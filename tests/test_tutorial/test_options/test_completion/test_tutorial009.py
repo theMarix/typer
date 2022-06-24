@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 import typer
 from typer.testing import CliRunner
@@ -14,7 +15,7 @@ app.command()(mod.main)
 
 def test_completion():
     result = subprocess.run(
-        ["coverage", "run", mod.__file__, " "],
+        [sys.executable, "-m", "coverage", "run", mod.__file__, " "],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         encoding="utf-8",
@@ -41,7 +42,7 @@ def test_1():
 
 def test_script():
     result = subprocess.run(
-        ["coverage", "run", mod.__file__, "--help"],
+        [sys.executable, "-m", "coverage", "run", mod.__file__, "--help"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         encoding="utf-8",
